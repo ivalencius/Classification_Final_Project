@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <title/>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>Wildfire Perimeters (1950+)
+
+Includes separate groups for just large fires (5000+ acres) vs all fires, and a separate layer for Prescribed Burns. Just large fires only includes last 5 years of fires 2015-2019. The All Fires group is scale dependent and starts 
+displaying at the country level scale. Prescribed fires likewise begin displaying at country level scale.
+
+Full labels included only for 2015+ Large Fires, Year-only labels for recent large fires, and those all display starting at country level scale.
+
+Only 2000s and 2010s all fires are on by default. This service represents the latest official version, and is updated when new versions are released annually. As of June 2020, it represents fire19_1. </abstract>
+            <purpose>CAL FIRE Wildfire Perimeters and Prescribed Burns.  Hosted in AGOL.</purpose>
+        </descript>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>wildfires</themekey>
+                <themekey>CAL FIRE</themekey>
+                <themekey>FRAP</themekey>
+                <themekey>California</themekey>
+                <themekey>fire perimeters</themekey>
+                <themekey>fire</themekey>
+                <themekey>Fire and Fuels</themekey>
+                <themekey>California Forestry and Fire Protection</themekey>
+                <themekey>CAOpenData</themekey>
+            </theme>
+        </keywords>
+        <accconst>None</accconst>
+        <useconst>The State of
+California and the Department of Forestry and Fire Protection make no
+representations or warranties regarding the accuracy of data or maps.  Neither the State nor the Department shall be
+liable under any circumstances for any direct, special, incidental, or
+consequential damages with respect to any claim by any user or third party on
+account of, or arising from, the use of data or maps.  For more information about this data or it's terms of use, contact calfire.egis@fire.ca.gov.</useconst>
+        <datacred>CALFIRE, USDA Forest Service, other Federal Partners</datacred>
+    </idinfo>
+    <metainfo>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>
