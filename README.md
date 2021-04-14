@@ -7,10 +7,10 @@
   - [Data Sources](#data-sources)
   - [Methods](#methods)
 ## Team
-- Ilan Valencius →
-- Ian Dulin →
-- Jose Cuevas →
-- Alexander Ronan →
+- Ilan Valencius → Hyperspectral Signature/Image Classification
+- Ian Dulin → Hyperspectral Signature/Image Classification
+- Jose Cuevas → Classification Verification/Research
+- Alexander Ronan → Classification Verification/Research
 
 ## Research Question
 
