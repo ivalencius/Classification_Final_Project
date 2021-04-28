@@ -1,4 +1,4 @@
-%% Code for loading/preprocessing image classificationd data
+%% Code for loading/preprocessing image classification data
 %   Authors: Jose Cuevas & Ilan Valencius
 
 %% Directory Management - Change as needed
@@ -48,17 +48,38 @@ idx_outside = find(idx_outside == 1);
 CA_SHP(idx_outside) = [];
 
 %% Dereference shapefile -> set project projection
-CA_SHP_lon = [CA_SHP.Y];
-CA_SHP_lat = [CA_SHP.X];
-
-[CA_SHP_lat,CA_SHP_lon] = projinv(proj,CA_SHP_lat,CA_SHP_lon);
-figure (1); clf
-geoplot(CA_SHP_lat,CA_SHP_lon)
-hold on
-geobasemap('streets')
+CA_SHP_lon = [CA_SHP.X];
+CA_SHP_lat = [CA_SHP.Y];
+[CA_SHP_lon, CA_SHP_lat] = projinv(proj, CA_SHP_lon, CA_SHP_lat);
+%[idx, ~] = size(CA_SHP);
+%for i = 1:idx
+%    [CA_SHP(i).X, CA_SHP(i).Y] = projinv(proj, CA_SHP(i).X, CA_SHP(i).Y);
+%end
 
 %% Test Visualization of data
 figure (1); clf
-geoplot(CA_SHP_lat,CA_SHP_lon)
+geoplot(CA_SHP_lon,CA_SHP_lat)
 hold on
 geobasemap('streets')
+
+%% Export Shapefile
+shapewrite(CA_SHP, ROOT_DIR + "\California_Fire_Perimeters-shp\Study_area.shp");
+
+%% Load Landsat Data for Signature Generation
+% Parse
+%Landsat_Parsed = loadLandSat8V2('LC08_L1TP_045033_20190102_20200830_02_T1_MTL.txt');
+Landsat_MetaData = parseLandSat8MetaData('LC08_L1TP_045033_20190102_20200830_02_T1_MTL.txt');
+hcube_FULL = hypercube("MERGED.tif", [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
+hcube_CLIPPED = hypercube("MERGED_CLIPPED.tif", [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
+
+%% Export and save necessary variables
+save('ROOT_DIR.mat','ROOT_DIR');
+save('CA_SHP.mat','CA_SHP');
+save('CA_SHP_lon.mat','CA_SHP_lon');
+save('CA_SHP_lat.mat','CA_SHP_lat');
+save('proj.mat','proj');
+save('bbox.mat','bbox');
+save('Landsat_MetaData.mat','Landsat_MetaData');
+save('hcube_FULL.mat','hcube_FULL');
+save('hcube_CLIPPED.mat','hcube_CLIPPED');
+
