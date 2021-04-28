@@ -47,7 +47,7 @@ end
 idx_outside = find(idx_outside == 1);
 CA_SHP(idx_outside) = [];
 
-%% Dereference shapefile -> set project projection
+%% Dereference shapefile -> map to landsat projection
 CA_SHP_lon = [CA_SHP.X];
 CA_SHP_lat = [CA_SHP.Y];
 [CA_SHP_lon, CA_SHP_lat] = projinv(proj, CA_SHP_lon, CA_SHP_lat);
@@ -62,15 +62,37 @@ geoplot(CA_SHP_lon,CA_SHP_lat)
 hold on
 geobasemap('streets')
 
-%% Export Shapefile
-shapewrite(CA_SHP, ROOT_DIR + "\California_Fire_Perimeters-shp\Study_area.shp");
-
 %% Load Landsat Data for Signature Generation
 % Parse
 %Landsat_Parsed = loadLandSat8V2('LC08_L1TP_045033_20190102_20200830_02_T1_MTL.txt');
 Landsat_MetaData = parseLandSat8MetaData('LC08_L1TP_045033_20190102_20200830_02_T1_MTL.txt');
-hcube_FULL = hypercube("MERGED.tif", [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
-hcube_CLIPPED = hypercube("MERGED_CLIPPED.tif", [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
+MERGED_tif = readgeoraster("MERGED.tif");
+MERGED_info = geotiffinfo("MERGED.tif");
+%% Unproject Landsata Data
+% merged_data = squeeze(MERGED_tif(:,:,1));
+% for i = 1:length(merged_data)
+%     for j = 1:length(merged_data(1,:))
+%         [x,y] = pix2map(MERGED_info.RefMatrix, merged_data(i),merged_data(i,j));
+%         [MERGED_tif, merged_lon] = projinv(MERGED_info, x, y);
+%     end
+% end
+%% Dereference shapefile -> map to landsat projection
+CA_SHP_lon = [CA_SHP.X];
+CA_SHP_lat = [CA_SHP.Y];
+[CA_SHP_lon, CA_SHP_lat] = projinv(MERGED_info, CA_SHP_lon, CA_SHP_lat);
+%%
+mask = zeros(8246,8110,'logical');
+for i = 1:length(CA_SHP)
+    rx = CA_SHP(i).X;
+    ry = CA_SHP(i).Y;
+    mask_temp = inpolygon(merged_X,merged_Y,rx,ry);
+    mask = mask | mask_temp;
+end
+%hcube_FULL = hypercube("MERGED.tif", [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
+%hcube_CLIPPED = hypercube("MERGED_CLIPPED.tif", [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
+
+%% Export Shapefile
+shapewrite(CA_SHP, ROOT_DIR + "\California_Fire_Perimeters-shp\Study_area.shp");
 
 %% Export and save necessary variables
 save('ROOT_DIR.mat','ROOT_DIR');
