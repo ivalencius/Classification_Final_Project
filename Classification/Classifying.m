@@ -3,30 +3,31 @@
 
 %% Load Pre-Processing Data
 load('ROOT_DIR.mat');
-load('CA_SHP.mat');
-load('CA_SHP_lon.mat');
-load('CA_SHP_lat.mat');
-load('proj.mat');
-load('bbox.mat');
-load('Landsat_MetaData.mat');
-save('hcube_FULL.mat','hcube_FULL');
-save('hcube_CLIPPED.mat','hcube_CLIPPED');
+%load('Landsat_MetaData.mat');
+load('Merged_info.mat');
+load('MergeClip_info.mat');
+load('hcube_FULL.mat');
+load('hcube_CLIPPED.mat');
 
 %% Directory Management
 addpath(genpath(ROOT_DIR));
 
 %% Create False Color Image 
-false_color = colorize(hcube_Landsat);
+false_color1 = colorize(hcube_FULL);
+false_color2 = colorize(hcube_CLIPPED);
 %% Show extent of data
-imshow(false_color);
+% imshow(false_color1);
+% imshow(false_color2);
 
-%% Extract Endmembers
-numEndmembers = countEndmembersHFC(hcube_CLIPPED);
-endmembers =  nfindr(hcube_CLIPPED,numEndmembers);
+%% Determine number of endmembers in study area
+numEndmembers_clip = countEndmembersHFC(hcube_CLIPPED);
+
+%% Extract endmembers from study area
+%endmembers =  ppi(hcube_CLIPPED,numEndmembers_clip);
 
 %% Plot Endmembers
 figure
 plot(endmembers)
-title(['Number of Endmembers: ' num2str(numEndmembers)])
+title(['Number of Endmembers: ' num2str(numEndmembers_clip)])
 xlabel('Band Number')
 ylabel('Data Values')  
