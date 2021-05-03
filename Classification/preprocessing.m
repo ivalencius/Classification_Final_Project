@@ -72,8 +72,8 @@ geobasemap('streets')
 MergeClip_info = geotiffinfo("MERGED_CLIPPED.tif");
 
 %% Create Hyercubes
-hcube_FULL = hypercube(Merged, [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
-hcube_CLIPPED = hypercube(MergeClip, [0.44 0.48 0.56 0.66 0.87 1.61 2.2 0.59 1.37 10.9 12.01]);
+hcube_FULL = hypercube(Merged, [440, 480, 560, 660, 870, 1610, 2200, 590, 1370, 10900, 12010]);
+hcube_CLIPPED = hypercube(MergeClip, [440, 480, 560, 660, 870, 1610, 2200, 590, 1370, 10900, 12010]);
 
 %% Export Shapefile
 shapewrite(CA_SHP, ROOT_DIR + "\California_Fire_Perimeters-shp\Study_area.shp");
