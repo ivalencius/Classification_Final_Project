@@ -48,9 +48,10 @@ idx_outside = find(idx_outside == 1);
 CA_SHP(idx_outside) = [];
 
 %% Load Landsat Data for Signature Generation
-% Parse
+% Parse individual bands
 %Landsat_Parsed = loadLandSat8V2('LC08_L1TP_045033_20190102_20200830_02_T1_MTL.txt');
 %Landsat_MetaData = parseLandSat8MetaData('LC08_L1TP_045033_20190102_20200830_02_T1_MTL.txt');
+% Parse merged bands
 [Merged, R] = readgeoraster("MERGED.tif");
 Merged_info = geotiffinfo("MERGED.tif");
 
@@ -61,10 +62,10 @@ CA_SHP_y = [CA_SHP.Y];
 [CA_SHP_x, CA_SHP_y] = projfwd(Merged_info, CA_SHP_lon, CA_SHP_lat);
 
 %% Test Visualization of Clipped Shapefile
-% figure (1); clf
-% geoplot(CA_SHP_lon,CA_SHP_lat)
-% hold on
-% geobasemap('streets')
+figure (1); clf
+geoplot(CA_SHP_lon,CA_SHP_lat)
+hold on
+geobasemap('streets')
 
 %% Add Clipped Raster
 [MergeClip, R2] = readgeoraster("MERGED_CLIPPED.tif");
