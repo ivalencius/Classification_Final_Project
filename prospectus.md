@@ -23,7 +23,7 @@ In summary:
 ## Hypotheses
 We hypothesize that MATLAB’s Image Processing Toolbox™ can adequately identify burned areas resulting from wildfires from 2015-2019 in Northern California. By focusing on individual bands of LANDSAT data, there is a predicated unique spectral fingerprint for burned trees and non burned trees. Consequently, we should be able to use the Hyperspectral Image Library to observe these changes in the LANDSAT data and align these changes with known conflagration events.
 ## Data Sources
-1) [In Situ fire burn data - California State Geoportal](https://gis.data.ca.gov/datasets/CALFIRE-Forestry::recent-large-fire-perimeters-last-five-years-2015-2019-gt5000-acres)
+1) [In Situ fire burn data - California State Geoportal](https://gis.data.ca.gov/datasets/CALFIRE-Forestry::recent-large-fire-perimeters-last-five-years-2015-2019-gt5000-acres) *Note: this dataset is temporarily unavailable on the CA Gis Explorer Website*
 2) [LANDSAT-8 Hyperspectral Imagery](https://search.earthdata.nasa.gov/search?fp=Landsat-8&as[platform][0]=Landsat-8)
 3) [Global Forest Cover Change](https://earthenginepartners.appspot.com/science-2013-global-forest)
 ## Methods
