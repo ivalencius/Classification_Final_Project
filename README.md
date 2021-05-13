@@ -3,6 +3,7 @@
 ## Table of Contents ##
 - [Team](#team)
 - [Project Prospectus](./prospectus.md)
+- [Report](./Final_Report.pdf)
 
 ## Team
 - Ilan Valencius → Hyperspectral Signature/Image Classification
